@@ -45,4 +45,4 @@ class Bill(models.Model):
     final_cost = models.FloatField()
 
     def __str__(self) -> str:
-        return str('Order N° ='+self.id)
+        return str('Order N° ='+str(self.id))
