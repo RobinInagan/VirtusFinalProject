@@ -30,3 +30,19 @@ class Tables_Restaurant(models.Model):
 class Order(models.Model):
     waiter = models.ForeignKey(Waiter,on_delete=models.DO_NOTHING)
     table_restaurant = models.ForeignKey(Tables_Restaurant,on_delete=models.DO_NOTHING)
+
+    def __str__(self) -> str:
+        return str(self.id)
+
+class Products_Order(models.Model):
+    product = models.ForeignKey('Product.Product',on_delete=models.DO_NOTHING)
+    order = models.ForeignKey(Order,on_delete=models.DO_NOTHING)
+
+class Bill(models.Model):
+    order = models.ForeignKey(Order,on_delete=models.DO_NOTHING)
+    cost = models.FloatField()
+    tip_percent = models.DecimalField(max_digits=2, decimal_places=2)
+    final_cost = models.FloatField()
+
+    def __str__(self) -> str:
+        return str('Order N° ='+self.id)

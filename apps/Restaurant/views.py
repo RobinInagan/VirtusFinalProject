@@ -24,3 +24,11 @@ class Tables_RestaurantViewSet(ModelViewSet):
 class OrderViewSet(ModelViewSet):
         queryset = Order.objects.all()
         serializer_class = OrderSerializaerModel
+
+class ProductsOrderViewSet(ModelViewSet):
+        queryset = Products_Order.objects.all()
+        serializer_class = ProductsOrderSerializerModel
+
+class BillViewSet(ModelViewSet):
+        queryset = Bill.objects.all()
+        serializer_class = BillsSerializerModel
