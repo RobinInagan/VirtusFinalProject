@@ -32,3 +32,7 @@ class ProductsOrderViewSet(ModelViewSet):
 class BillViewSet(ModelViewSet):
         queryset = Bill.objects.all()
         serializer_class = BillsSerializerModel
+
+class TipWaiterViewSet(ModelViewSet):
+        queryset = Tip_Waiter.objects.all()
+        serializer_class = TipWaiterSerializerModel

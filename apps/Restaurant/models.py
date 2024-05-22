@@ -46,3 +46,12 @@ class Bill(models.Model):
 
     def __str__(self) -> str:
         return str('Order N° ='+str(self.id))
+    
+
+class Tip_Waiter(models.Model):
+    bill = models.ForeignKey(Bill,on_delete=models.DO_NOTHING)
+    waiter = models.ForeignKey('User.Waiter',on_delete=models.DO_NOTHING)
+    paid = models.BooleanField(default=False)
+
+    def __str__(self) -> str:
+        return str('Tip N° = '+str(self.id)+'With Bill N° = '+str(self.bill.id))

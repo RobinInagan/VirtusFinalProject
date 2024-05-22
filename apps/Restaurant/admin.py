@@ -19,6 +19,9 @@ class ProductsOrderAdmin(admin.ModelAdmin):
 class BillAdmin(admin.ModelAdmin):
     list_display = ["id","order","cost","tip_percent","final_cost"]
 
+class TipWaiterAdmin(admin.ModelAdmin):
+    list_display = ["id","bill","waiter","paid"]
+
 
 admin.site.register(Restaurant,RestaurantAdmin)
 admin.site.register(Table,TableAdmin)
@@ -26,3 +29,4 @@ admin.site.register(Tables_Restaurant,Tables_RestaurantAdmin)
 admin.site.register(Order,OrderAdmin)
 admin.site.register(Products_Order,ProductsOrderAdmin)
 admin.site.register(Bill,BillAdmin)
+admin.site.register(Tip_Waiter,TipWaiterAdmin)

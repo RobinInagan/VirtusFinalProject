@@ -31,3 +31,8 @@ class BillsSerializerModel(serializers.ModelSerializer):
     class Meta:
         model = Bill
         fields = "__all__"
+
+class TipWaiterSerializerModel(serializers.ModelSerializer):
+    class Meta:
+        model = Tip_Waiter
+        fields= "__all__"
