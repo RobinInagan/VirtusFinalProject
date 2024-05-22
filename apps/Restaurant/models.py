@@ -1,7 +1,7 @@
 from django.db import models
 
 # Imports From self Modules
-from apps.User.models import Users
+from apps.User.models import Users,Waiter
 
 
 class Restaurant(models.Model):
@@ -24,4 +24,9 @@ class Tables_Restaurant(models.Model):
     table = models.ForeignKey(Table,on_delete=models.DO_NOTHING)
     restaurant = models.ForeignKey(Restaurant,on_delete=models.DO_NOTHING)
 
+    def __str__(self) -> str:
+        return str('Table Number: '+str(self.table.number)+' Restaurant: '+str(self.restaurant.name))
 
+class Order(models.Model):
+    waiter = models.ForeignKey(Waiter,on_delete=models.DO_NOTHING)
+    table_restaurant = models.ForeignKey(Tables_Restaurant,on_delete=models.DO_NOTHING)

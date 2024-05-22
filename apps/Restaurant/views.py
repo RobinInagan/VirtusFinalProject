@@ -21,3 +21,6 @@ class Tables_RestaurantViewSet(ModelViewSet):
         queryset = Tables_Restaurant.objects.all()
         serializer_class = Tables_RestaurantSerializerModel
 
+class OrderViewSet(ModelViewSet):
+        queryset = Order.objects.all()
+        serializer_class = OrderSerializaerModel

@@ -15,3 +15,8 @@ class Tables_RestaurantSerializerModel(serializers.ModelSerializer):
     class Meta:
         model = Tables_Restaurant
         fields = "__all__"
+
+class OrderSerializaerModel(serializers.ModelSerializer):
+    class Meta:
+        model = Order
+        fields = "__all__"
