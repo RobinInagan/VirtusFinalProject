@@ -6,7 +6,7 @@ from .models import *
 
 
 class UsersAdmin(admin.ModelAdmin):
-    list_display=["FirstName","SecondName","username"]
+    list_display=['id',"username","firstName","lastName","email","password"]
 
 class WaiterAdmin(admin.ModelAdmin):
     list_display =["user","charge"]

@@ -5,16 +5,13 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 class Users(AbstractUser):
-    REQUIRED_FIELDS = ["email","FirstName","SecondName","password"]
+    REQUIRED_FIELDS = ["firstName","lastName","email","password"]
      
-    FirstName = models.CharField(max_length=50,default="")
-    SecondName = models.CharField(max_length=50,default="")
+    username = models.CharField(max_length=200,unique=True)
+    firstName = models.CharField(max_length=50,default="")
+    lastName = models.CharField(max_length=50,default="")
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=128, verbose_name='password')
-
-    def save(self, *args,**kwargs) -> None:
-        self.username = self.email.split('@')[0]
-        return super().save(*args,**kwargs)
     
     def __str__(self) -> str:
         return self.username

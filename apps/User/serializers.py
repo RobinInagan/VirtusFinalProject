@@ -4,7 +4,7 @@ from .models import *
 class UserSeralizerModel(serializers.ModelSerializer):
     class Meta:
         model = Users
-        fields = ['id','email', 'FirstName', 'SecondName','password']
+        fields = ['id',"username","firstName","lastName","email","password"]
 
     def create(self, validated_data):
         password = validated_data.pop('password',None)
@@ -17,7 +17,7 @@ class UserSeralizerModel(serializers.ModelSerializer):
 class WaiterSerializerModel(serializers.ModelSerializer):
     class Meta:
         model = Waiter
-        fields = "__all__"
+        fields = ['id',"user","charge"]
 
 class WaiterShiftSerializerModel(serializers.ModelSerializer):
     class Meta:
