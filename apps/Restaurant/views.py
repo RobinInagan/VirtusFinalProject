@@ -12,6 +12,7 @@ import pytz
 from .models import *
 from .serializers import *
 from apps.User.models import Waiter_Shift,Waiter
+from .permissions import isMG,isMG_AT
 
 class RestaurantViewSet(ModelViewSet):    
         queryset = Restaurant.objects.all()
@@ -59,6 +60,18 @@ class OrderViewSet(ModelViewSet):
         queryset = Order.objects.all()
         serializer_class = OrderSerializaerModel
 
+        permission_classes = [IsAuthenticated]
+
+        def destroy(self, request, pk=None):
+                self.permission_classes += [isMG_AT]
+                self.check_permissions(request)
+
+                order = self.get_object()
+                order.delete()
+                return Response({'Exito': 'Orden eliminada de manera exitosa'},status=status.HTTP_204_NO_CONTENT)
+
+                                
+
 class ProductsOrderViewSet(ModelViewSet):
         queryset = Products_Order.objects.all()
         serializer_class = ProductsOrderSerializerModel
@@ -66,6 +79,19 @@ class ProductsOrderViewSet(ModelViewSet):
 class BillViewSet(ModelViewSet):
         queryset = Bill.objects.all()
         serializer_class = BillsSerializerModel
+
+        permission_classes = [IsAuthenticated]
+
+        def destroy(self, request, pk=None):
+                self.permission_classes += [isMG]
+                self.check_permissions(request)
+                try:
+                        bill = self.get_object()
+                        bill.delete()
+                        return Response({'Exito': 'Cuenta eliminada de manera exitosa'},status=status.HTTP_204_NO_CONTENT)
+                except Bill.DoesNotExist:
+                        return Response({'error': 'Cuenta no encontrada'}, status=status.HTTP_404_NOT_FOUND)
+                        
 
 class TipWaiterViewSet(ModelViewSet):
         queryset = Tip_Waiter.objects.all()
