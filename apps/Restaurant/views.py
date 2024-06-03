@@ -85,12 +85,10 @@ class BillViewSet(ModelViewSet):
         def destroy(self, request, pk=None):
                 self.permission_classes += [isMG]
                 self.check_permissions(request)
-                try:
-                        bill = self.get_object()
-                        bill.delete()
-                        return Response({'Exito': 'Cuenta eliminada de manera exitosa'},status=status.HTTP_204_NO_CONTENT)
-                except Bill.DoesNotExist:
-                        return Response({'error': 'Cuenta no encontrada'}, status=status.HTTP_404_NOT_FOUND)
+                
+                bill = self.get_object()
+                bill.delete()
+                return Response({'Exito': 'Cuenta eliminada de manera exitosa'},status=status.HTTP_204_NO_CONTENT)
                         
 
 class TipWaiterViewSet(ModelViewSet):
